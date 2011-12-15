@@ -49,6 +49,10 @@ module ActsAsTenant
         }
     
         # Rewrite accessors to make tenant foreign_key/association immutable
+        # 
+        # Commented out - don't see need to make tenant model immutable
+        #
+=begin
         define_method "#{fkey}=" do |integer|  
           if new_record?
             write_attribute(fkey, integer)  
@@ -64,6 +68,7 @@ module ActsAsTenant
             raise "#{association} is immutable!"
           end  
         end
+=end
       
         # add validation of associations against tenant scope
         # we can't do this for polymorphic associations so we 
